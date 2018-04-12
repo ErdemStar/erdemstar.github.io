@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- Meta Tag -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO -->
+    <meta name="description" content="150 words">
+    <meta name="author" content="uipasta">
+    <meta name="url" content="http://www.yourdomainname.com">
+    <meta name="copyright" content="company name">
+    <meta name="robots" content="index,follow">
+    
+    
+    <title>Yazılım & Güvenlik</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
+    
+    <!-- All CSS Plugins -->
+    <link rel="stylesheet" type="text/css" href="../css/plugin.css">
+    
+    <!-- Main CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+    <!-- Google Web Fonts  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+    
+    <!-- Syntax Highlighter  -->
+    <link rel="stylesheet" type="text/css" href="../css/syntax/shCore.css">
+    <link rel="stylesheet" type="text/css" href="../css/syntax/shThemeDefault.css">
+    
+    
+    <!-- HTML5 shiv and Respond.js support IE8 or Older for HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+
+  </head>
+<body>
+
+	
+     
+	 <!-- Preloader Start -->
+     <div class="preloader">
+	   <div class="rounder"></div>
+      </div>
+     <!-- Preloader End -->
+    <div id="main">
+        <div class="container">
+            <div class="row">
+            	
+                <!-- About Me (Left Sidebar) Start -->
+                <div class="col-md-3 left-bar">
+                   <div class="about-absolute">
+
+                     <div class="my-pic">
+                        <img style="height: 400px;" src="../images/pic/IMG_3830.JPG" alt="">
+                        <a href="javascript:void(0)" class="collapsed" data-target="#menu" data-toggle="collapse"><i class="icon-menu menu"></i></a>
+                         <div id="menu" class="collapse">
+                           <ul class="menu-link">
+                               <li><a href="../index.html"><h4 class="yazı-boyutu">Ana Sayfa</h4></a></li>
+                               <li><a href="../about.html"><h4 class="yazı-boyutu">Hakkımda</h4></a></li>
+                            </ul>
+                         </div>
+                        </div>
+                     <div class="my-detail">
+
+                        <div class="white-spacing">
+                            <h1>Erdem YILDIZ</h1>
+                            <h5>Siber Güvenlik Araştırmacısı</h5>
+                            <h5>Python Geliştiricisi</h5>
+                            <h5>Linux Hayranı</h5>
+                        </div>
+
+                       <ul class="social-icon">
+                         <li><a href="https://www.facebook.com/profile.php?id=100001860038071" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                         <li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA/featured?disable_polymer=1" target="_blank" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                         <li><a href="https://www.linkedin.com/in/erdemyildiz/" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                         <li><a href="https://github.com/ErdemStar" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
+                        </ul>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- About Me (Left Sidebar) End -->
+
+                <!-- Blog Post (Right Sidebar) Start -->
+                <div class="col-md-9">
+                    <div class="col-md-12 page-body">
+                    	<div class="row">
+                            
+                            <div class="sub-title">
+                                <a href="../index.html" title="Go to Home Page"><i class="fa fa-arrow-circle-left"></i><h2>Ana Sayfa'ya geri dön</h2></a>
+                             </div>
+                            
+                            <div class="col-md-12 content-page">
+                              <div class="col-md-12 blog-post">
+
+                                <!-- Post Headline Start -->
+                                <div class="post-title">
+                                    <h1>Python ile Shodan API'leri kullanarak açık port tarama  !!!</h1>
+                                   </div>
+                                   <!-- Post Headline End -->
+                                    
+                                    
+                                <!-- Post Detail Start -->
+                                <div class="post-info">
+                                    <span>Nisan 12, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
+                                </div>
+                                <!-- Post Detail End -->
+                                <!-- İçerik -->
+                                <div class="yazı-kısmı">
+                                    <p>
+                                        Merhaba arkadaşlar bugün python ile yazmış olduğum hedef cihazın portarını tarayıp daha sonra açık
+                                        olan portları seçtiğiniz bir adrese mail atan script amacını , kodlarını ve video ile kullanımı
+                                        göstereceğim.
+                                        <span style="font-weight: bold">Haydi bir giriş yapalım...</span>
+                                    </p>
+
+                                    <p>
+                                        <span style="margin-left: 20px">
+                                            Arkadaşlar bu scripteki amacım şuydu.Hedef bir server'ı genellikle hazır tool ile tarayıp
+                                            açık olan portları görmek isteriz.Bu işlemi yaptığımızda hedef server log kayıtlarında bizim
+                                            ip adresi bilgimizi sakladığını biliyoruz.Bunun önüne geçmek için Shodan API'leri kullaran bir
+                                            script yazmak istedim.Burada tarama işlemini biz değil Shodan bizim için gerçekleştirecektir.
+                                            Daha sonra ise açık portlar bilgisi bir script'te tutulup SendMail.py script'inde gördüğünz kısıma
+                                            gerekeli eposta bilgileri vererek açık olan portlar bilgisini istediğiniz bir kişiye mail atarak
+                                            işlemi sonlandıracaktır.
+
+                                        </span>
+                                    </p>
+
+
+
+                                    <div class="post-quote margin-top-40 margin-bottom-40">
+                                        <blockquote>
+                                            Kötü kod yazdığım için üzgünüm.Daha iyi bir yazılımcı olmak için yazılım geliştirme
+                                            ve problem çözme yeteneğim üzerinde hala uğraşmaktayım.
+                                        </blockquote>
+                                    </div>
+
+
+
+                                    <!-- Post Coding  Start -->
+                                    <div class="margin-top-40 margin-bottom-40">
+                                        <pre class="brush: js">
+                                        #SendMail.py
+                                        #!/usr/bin/env python3
+                                        # -*- coding: utf-8 -*-
+                                        import smtplib
+
+                                        def Mail(target,open_ports):
+                                            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                                            server.ehlo()
+
+                                            # Next, log in to the server
+                                            server.login("Gmail", "Gmail-Şifre")
+
+                                            # Send the mail
+
+                                            Subject = "{} Adlı adresin açık portların listesi".format(target)
+                                            Text = ""
+                                            for i in open_ports:
+                                                Text += "Open port {}\n".format(i)
+
+                                            Message = "Subject: {}\n\n{}".format(Subject, Text)
+                                            server.sendmail("Gmail", "Hedef kişi", Message)
+                                            server.close()
+                                        </pre>
+                                    </div>
+                                    <div class="margin-top-40 margin-bottom-40">
+                                        <pre class="brush: js">
+                                        #ScanShodan.py
+                                        #!/usr/bin/env python3
+                                        import SendMail
+                                        import shodan , json  ,requests , smtplib
+
+                                        API_KEY = "Buraya Shodan API-KEY yazılacaktır"
+                                        api = shodan.Shodan(API_KEY)
+
+                                        class Network():
+                                            def __init__(self):
+                                                self.target = raw_input("Enter the address :")
+                                                ask = "https://api.shodan.io/dns/resolve?hostnames=" + self.target + "&key=" + API_KEY
+                                                response = requests.get(ask)
+                                                get_json = json.loads(response.text)
+                                                self.ip_addr = get_json[self.target]
+                                                self.ScanPort()
+
+                                            def ScanPort(self):
+                                                host = api.host(self.ip_addr)
+                                                self.open_ports = []
+                                                for i in host["data"]:
+                                                    self.open_ports.append(i["port"])
+                                                self.Mail()
+                                            def Mail(self):
+                                                SendMail.Mail(self.target,self.open_ports)
+
+
+                                        N = Network()
+                                        </pre>
+                                    </div>
+
+                                    <!-- Video kısmı-->
+                                    <div class="video">
+                                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/psip34wJHEg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    </div>
+
+                                    <!-- Tavsiye-->
+                                    <div class="tavsiye" style="margin-top: 3%">
+                                      <p>
+                                          <span style="margin-left: 20px">
+                                              Yukarıda paylaşmış olduğum kodda bir sıkıntı yada yapılabilecek iyileştirmeler için bana
+                                          ulaşabilirseniz çok sevinirim.Okuduğunuz için çok teşekkür ederim.Esen kalın :)
+
+                                          </span>
+
+                                      </p>
+                                    </div>
+
+                                 </div>
+                                    <!-- İçerik -->
+                                </div>    
+                             </div>
+                              
+                         </div>
+                         
+
+                           
+                         </div>
+                     
+                     
+                       
+                       <!-- Footer Start -->
+                       <div class="col-md-12 page-body margin-top-50 footer">
+                          <footer>
+                          <ul class="menu-link">
+                               <li><a href="../index.html"><h4>Ana Sayfa</h4></a></li>
+                               <li><a href="../about.html"><h4>Hakkımda</h4></a></li>
+                            </ul>
+                          <div class="social-menu">
+                              <ul class="social-icon">
+                                 <li><a href="https://www.facebook.com/profile.php?id=100001860038071" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                 <li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA/featured?disable_polymer=1" target="_blank" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                                 <li><a href="https://www.linkedin.com/in/erdemyildiz/" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                 <li><a href="https://github.com/ErdemStar" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
+                             </ul>
+                          </div>
+                         </footer>
+                       </div>
+                       <!-- Footer End -->
+
+
+                  </div>
+                <!-- Blog Post (Right Sidebar) End -->
+                
+            </div><!-- row-->
+         </div> <!-- container-->
+      </div> <!-- main-->
+    
+
+    <!-- Back to Top Start -->
+    <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
+    <!-- Back to Top End -->
+
+    <!-- All Javascript Plugins  -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/plugin.js"></script>
+    
+    <!-- Main Javascript File  -->
+    <script type="text/javascript" src="../js/scripts.js"></script>
+    
+    <!-- Syntax Highlighter Javascript File  -->
+    <script type="text/javascript" src="../js/syntax/shCore.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushCss.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPerl.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPlain.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPython.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushRuby.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushSql.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushVb.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushXml.js"></script>
+    
+	<!-- Syntax Highlighter Call Function -->
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = 'js/syntax/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+
+    
+   </body>
+</html>
