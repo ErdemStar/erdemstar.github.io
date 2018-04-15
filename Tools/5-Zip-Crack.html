@@ -105,32 +105,34 @@
 
                                 <!-- Post Headline Start -->
                                 <div class="post-title">
-                                    <h1>Python ile Hash function'ları kullanma</h1>
+                                    <h1>Python ile Zip Şifresi Kırma</h1>
                                    </div>
                                    <!-- Post Headline End -->
                                     
                                     
                                 <!-- Post Detail Start -->
                                 <div class="post-info">
-                                    <span>Şubat 6, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
+                                    <span>Şubat 15, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
                                 </div>
                                 <!-- Post Detail End -->
                                 <!-- İçerik -->
                                 <div class="yazı-kısmı">
                                     <p>
-                                        Merhaba arkadaşlar bugün python ile yazmış olduğum scripte parametre olarak hedef hash'lenecek metin türünü
-                                        daha sonra metni ve son olarakta encrypt yada decrypt  seçeneği seçtiğinizde işlemleri yapmaya çalışan script'in amacını
-                                        , kodlarını ve video ile kullanımı göstereceğim.<span style="font-weight: bold">Haydi bir giriş yapalım...</span>
+                                        Merhaba arkadaşlar bugün python ile yazmış olduğum scripte parametre olarak hedef zip dosyası ve bu
+                                        dosya üzerinde denenecek olan şifrelerin olduğu (Wordlist) bir dosya yolu verdikten sonra verilen
+                                        zip'i kırmaya çalışan script'in amacını , kodlarını ve video ile kullanımı göstereceğim.
+                                        <span style="font-weight: bold">Haydi bir giriş yapalım...</span>
                                     </p>
 
                                     <p>
                                         <span style="margin-left: 20px">
-                                            Arkadaşlar bu scripteki amacım şuydu.Daha önceleri 2 kere BUSİBER'e katıldım ve 2 kere'de hash'leme
-                                            ile alakalı bir soru denk gelmişti ve hatta son girdiğimde sezar şifrelemesi ile alakı bir soru vardı.
-                                            Bende bu tarz CTF'lerde işe yaracak olan bir script yazmak istedim çünkü CTF'de zaman çok hızlı akıyor ve
-                                            eğer önceden bir hazırlığınız yoksa süre yetiştiremiyorsunuz.Bu script'de ben Caesar şifrelemesini elle yazdım diğerlerini
-                                            API kullanarak yaptım.Bu script'in çalışması için "http://md5decrypt.net" görmüş olduğunuz linke üye
-                                            olup karşınlığında API key script'de uygun yazdığında problem kalmayacaktır.
+                                            Arkadaşlar bu scripteki amacım şuydu.Bir önceki post'umda sizlere BUSİBER katıldığımı ve orada
+                                            karşılaştığım sorular üzerine Hash Function script'ini yazdığımı söyledim.Bu script'in amacıda
+                                            bir öncekiyle aynıdır.CTF'lerde genellike zip'lenmiş bir dosya verilir ve bunu açılmasını ister.
+                                            Bende bu mantıkta çalışan kullanıcıdan zip'lenmiş dosyanın yolunu ve üzerinde denenecek olan şifrelerin
+                                            bir listesinin istiyeren zip'lenmiş dosyayı kırmaya çalışan bir script yazmak istedim.Burada verdiğiniz
+                                            şifrelerin olduğu dosya ne kadar çok detaylı şifre içeriyorsa script'i kırma ihtimalimiz bir hayli
+                                            fazlalaşıyor.
 
                                         </span>
                                     </p>
@@ -149,73 +151,39 @@
                                     <!-- Post Coding  Start -->
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                        #Hash-Function.py
-                                        # -*- coding: utf-8 -*-
-                                        import requests
+                                        #Zip-Crack.py
+                                        import sys
+                                        import zipfile
                                         import argparse
-                                        import string
 
-                                        def Encode(HashStr ,HashType):
-                                            Hash = HashStr
-                                            Hash_type = HashType
-                                            E_Mail = "API_KEY için i-mail bilgisi"
-                                            KEY = "API_KEY"
-                                            response = requests.get("http://md5decrypt.net/Api/api.php?mot="+Hash+"&hash_type="+Hash_type+"&email="+E_Mail+"&code="+KEY)
-                                            print Hash," --> ",response.text
+                                        def CrackZip(z_file,passwd):
+                                            zfile = zipfile.ZipFile(z_file)
+                                            try:
+                                                zfile.extractall(pwd=passwd)
+                                                print "This password is working ---> {}".format(passwd)
+                                                return True
+                                            except:
+                                                print "This password isn't working ---> {}".format(passwd)
 
-                                        def Decode(HashStr ,HashType):
-                                            Hash = HashStr
-                                            Hash_type = HashType
-                                            E_Mail = "API_KEY için i-mail bilgisi"
-                                            KEY = "API_KEY"
-                                            response = requests.get("http://md5decrypt.net/Api/api.php?hash={}&hash_type={}&email={}&code={}".
-                                                                    format(Hash,Hash_type,E_Mail,KEY))
-                                            print Hash, " -->" , response.text
 
-                                        def EnSezar(HashStr):
-                                            temp = ""
-                                            alp = list(map(lambda x : x ,string.ascii_letters ))
-                                            alp = alp[:26] *2
+                                        def Main():
+                                            parse = argparse.ArgumentParser()
+                                            parse.add_argument("--f","--zip_file",help="Please enter zip file way")
+                                            parse.add_argument("--w","--word-list",help="Please enter the word list")
+                                            args = parse.parse_args()
 
-                                            shift = input("Enter the key :")
-                                            shift %=26
 
-                                            for i in HashStr:
-                                                temp+= alp[alp.index(i) +shift]
+                                            wordlist = args.w
+                                            with open(wordlist,"r") as file:
+                                                liste = file.readlines()
+                                                for i in liste:
+                                                    resp = CrackZip(args.f ,i.strip("\n") )
+                                                    if resp:
+                                                        sys.exit(0)
 
-                                            print temp
-                                        def DeSezar(HashStr):
-                                            temp = ""
-                                            alp = list(map(lambda x: x, string.ascii_letters))
-                                            alp = alp[:26]*2
 
-                                            shift = input("Enter the key :")
-                                            shift %= 26
+                                        Main()
 
-                                            for i in HashStr:
-                                                temp += alp[alp.index(i,1) - shift]
-
-                                            print temp
-
-                                        if __name__ == "__main__":
-                                            parser = argparse.ArgumentParser()
-                                            parser.add_argument("--t", "--type", help="Please enter the hash type {Caesar , MD4 , MD5 ,SHA1 , SHA256 , SHA512}")
-                                            parser.add_argument("--h", "--hash", help="Please enter the hash")
-                                            parser.add_argument("--e" ,"--encrpt" , action='store_false' , help="Encode")
-                                            parser.add_argument("--d", "--decrpt" , action='store_false' , help="Decode")
-                                            args = parser.parse_args()
-
-                                            Hashtype = (args.t).lower()
-                                            HashStr  = args.h
-
-                                            if Hashtype == "caesar" and args.e==False:
-                                                EnSezar(HashStr)
-                                            elif Hashtype == "caesar" and args.d==False:
-                                                DeSezar(HashStr)
-                                            elif  args.e == False:
-                                                Encode(HashStr,Hashtype)
-                                            elif args.d ==False:
-                                                Decode(HashStr, Hashtype)
                                         </pre>
                                     </div>
 
