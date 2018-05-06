@@ -129,15 +129,17 @@
                                     </div>
 
                                     <p>
-                                        Script'in çalışma mantığını anlatmanda önce Normal shell(bind) ile Reverse shell'den bahsetmek istiyorum.
-                                        <p><b>Normal(bind) shell :</b> Hedef makine saldırganın seçtiği bir portu kendi üzerinde gelen istekleri karşılık veren
-                                        bir dinleyici çalıştırır.Daha sonra saldırgan açılan dinleyici bağlanarak üzerinde kod çalışmasıdır.Bu senaryo
+                                        Script'in çalışma mantığını anlatmadan önce Normal shell(bind) ile Reverse shell'den bahsetmek istiyorum.
+
+                                        <p><b>Normal(bind) shell :</b> Hedef, saldırganın seçtiği bir portu kendi üzerine gelen istekleri karşılık veren
+                                        bir server çalıştırır.Daha sonra saldırgan açılan server'a bağlanarak hedef üzerinde kod çalıştırabilir bir hale gelir.Bu senaryo
                                         NAT'lanan networkler arkasında çalışmamaktadır.
                                         </p>
 
-                                        <p><b>Reverse shell :</b> Saldırgan daha önce belirlediği ip addresi ve port bilgisini kullanarak kendi makinası üzerinde
-                                            bir server çalıştırır.<b>(</b>Ip ve Port bilgisi hedef makine üzerinde daha önceden ayarlanmalıdr.<b>)</b>.Daha sonra hedef bu kurmuş olduğumuz server'a bağlanma istediği gönderir.Bu işlemden sonra hedef üzerinde
-                                        kod çalıştırabiliriz.
+                                        <p><b>Reverse shell :</b> Saldırgan daha önce belirlediği ip adresi ve port bilgisini kullanarak kendi makinası üzerinde
+                                            bir server çalıştırır.<b>(</b>Ip ve Port bilgisi hedef makine üzerinde çalışacak script'te daha önceden ayarlanmalıdr.<b>)</b>.
+                                            Daha sonra hedef , kurmuş olduğumuz server'a bağlanma istediği gönderir.Bu işlemden sonra hedef üzerinde
+                                            kod çalıştırabiliriz.
                                         </p>
                                     </p>
 
@@ -145,12 +147,11 @@
                                     <p>
                                         <span style="margin-left: 20px">
                                             Arkadaşlar bu scripteki amacım şuydu.Yerine göre local tabanlı yerine göre global ağ tabanlı bir saldırı senaryosu
-                                            gerçekleştirmek istedim.Bu yüzden Reverse shell üzerine bir uygulama yapmak istedim.Kod'larda görebileceğiniz gibi hedef
-                                            makine bize daha önceden belirlenmiş bir ip-port bilgisi kullanarak bir istek atacak.Kendi bilgisayarımızda açılacak socket ile
-                                            hedef'in bağlandı socket aynı olması gerekiyor.Hedef açtığımız socket'e başarılı bir şekilde bağlandığında artık kendi makinamız
-                                            üzerinden hedef üzerinde komut çalıştırabileceğiz.Bu senaryonun biraz daha kapalı olması için hedef python tabanli bir hesap makinası
-                                            çalıştırır fakat arka planda aynı script üzerinde bir process çalıştırılır.Bu process sayesinde bilgisayarımıza bağlanma istediği gelir ve bizden
-                                            gelen mesajları arka planda çalıştırır sonuçlarını yine bize gönderir.Bu saldırı kullanıcı hesap makinesini kapatana kadar gerçekleşir.
+                                            gerçekleştirmek istedim.Bu yüzden Reverse shell üzerine bir uygulama yaptım.Kod'larda görebileceğiniz gibi hedef
+                                            makine bize daha önceden belirlenmiş bir ip-port bilgisi kullanarak bir istek atacak.Hedef açtığımız socket'e başarılı bir şekilde bağlandığında
+                                            artık kendi makinamız hedef makina üzerinde komut çalıştırabileceğiz.Bu senaryonun biraz daha kapalı olması için hedef python tabanli bir hesap makinası
+                                            çalıştırır fakat arka planda başka bir process çalıştırılır.Bu process sayesinde bilgisayarımıza bağlanma istediği gelir ve bizden
+                                            gelen mesajları hedef üzerinde arka planda çalıştırır sonuçlarını yine bize gönderir.Bu saldırı kullanıcı hesap makinesini kapatana kadar gerçekleşir.
                                             <b>(</b>Burada ben hedef için hesap makinesi yaptım.Fakat bu mp3 player tarzı şeylerle değiştirilip socket'in daha uzun ömürlü
                                             kullanılması sağlanabilir<b>)</b>
 
