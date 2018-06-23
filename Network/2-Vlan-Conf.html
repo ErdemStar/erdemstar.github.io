@@ -102,7 +102,7 @@
 
                                 <!-- Post Headline Start -->
                                 <div class="post-title">
-                                    <h1>Packet Tracer ile Static Routing Yapılandırması</h1>
+                                    <h1>Packet Tracer ile Vlan Yapılandırması</h1>
                                    </div>
                                    <!-- Post Headline End -->
 
@@ -115,75 +115,97 @@
                                 <!-- İçerik -->
                                 <div class="yazı-kısmı">
                                     <p>
-                                        Merhaba arkadaşlar bugün sizlere Static Routing hakkında açıklama yapıp daha sonra Packet Tracer
+                                        Merhaba arkadaşlar bugün sizlere Vlan hakkında açıklama yapıp daha sonra Packet Tracer
                                         üzerinde bir uygulama ile kullanımını göstereceğim.
                                         <span style="font-weight: bold">Haydi bir giriş yapalım...</span>
                                     </p>
 
                                     <p>
                                         <span style="margin-left: 20px">
-                                            Router'ların temel görevi data'ları yönlendirme yapmasıdır.Bunu yaparken'de Routing Table (Yönlendirme
-                                            tablosu) baz alınarak haraket eder.Routing Table üzerinde <b>Static Routing</b> ve <b>Dinamic Routing</b> komutları yazılır.
-                                            Data'lar bir network'den başka bir network'e Routing Table üzerinde <b>Static Routing</b> yada <b>Dinamic Routing</b>
-                                            kurallarına bakarak aktarılır
+                                            Sanal yerel ağ olan VLAN(Virtual Local Area Network) bir yerel ağ(LAN) üzerindeki kullanıcıları mantıksal olarak
+                                            gruplandırmayı sağlar.Bu gruplandırma switch üzerindeki port'ların VLAN'a atılmasıyla gerçekleşir.VLAN'ın
+                                            kullanılmasıyla her bir VLAN grubu kendisi ile ilgili broadcast packetlerini alacağından trafik azalmış ve bandwidth
+                                            değeri artmış olur.
+                                            <p>
+                                                Hiçbir değişiklilik yapılmadan bir switch çalışıtırıp kullanılmaya başlandığınıda tüm port'lar default olarak VLAN 1'e
+                                                atanmış olarak gelir ve eğer switch üzerinde bir Broadcast Packeti üretilirse bu tüm VLAN'daki port'lara iletilir.Yukarıda'da
+                                                anlatıldığı gibi VLAN'lar oluşturularak Broadcast domain'in gideceği port sayısı azalır ve böylece bandwidht kullanımı değeri artar.
+                                                Buradan yola çıktığımızda aynı IP bloğunda olan cihazlar VLAN ile birbirlerinden mantıksal olarak ayrıldığında birbirleriyle artık
+                                                iletişim kuramazlar.
+                                            </p>
 
                                         </span>
-                                    </p>
 
-                                    <h3>Static Routing</h3>
-                                    <p>
-                                        <span>
-                                            Birkaç adet Router'ın bulunduğu network topolojilerinde Router'lar arası data akratımının
-                                            manuel olarak yapıldığı yöntemdir.Eğer tüm topolojide Static Routing yapılacaksa her bir router
-                                            için bu tanımlama yapılmalıdır.
-                                        </span>
                                     </p>
 
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                            #Static Routing komutu
-                                            ip route (hedef ip)  (hedef mask) (hangi yolu kullancak)
+                                            #Vlan Oluşturma
+                                            vlan vlan-id (1-1005)
+                                            name Bilgisayar (isteğe bağlı olarak kullanılabilir)
                                         </pre>
                                     </div>
 
-                                    <div class="post-image margin-top-40 margin-bottom-40">
-                                      <img src="../images/Blog%20Picture/Network/1-Static-route.1.png" alt="">
+                                    <div class="margin-top-40 margin-bottom-40">
+                                        <pre class="brush: js">
+                                            #Vlan port ataması
+                                            #Yol I
+                                            interface FastEthernet 0/1
+                                            switchport access vlan vlan-id
+
+                                            #Yol II
+                                            interface range FastEthernet 0/1-12
+                                            switchport access vlan vlan-id
+
+                                        </pre>
                                     </div>
 
 
+
+                                    <div class="post-image margin-top-40 margin-bottom-40">
+                                      <img src="../images/Blog%20Picture/Network/2-vlan.1.png" alt="">
+                                    </div>
+
                                     <p>
-                                        Yukarıdaki fotoğraf'ta 2 adet router ve onlara bağlı 1 adet host görüyoruz.Burada A ile B host makineleri
-                                        kendi aralarında haberleşemiyorlar.Biz bu haberleşmenin gerçekleşmesi  için <b>Static Routing</b> kuralı yazacağız.
+                                        Yukarıdaki fotoğraf'ta 1 adet switch ve ona bağlı 4 adet host görüyoruz.Burada VLAN 10 ve VLAN 20 oluşturulmuş ve
+                                        VLAN 10 içersinde A ve B hostu , VLAN 20 içersinde C ve D hostu bulunmaktadır.
                                     </p>
 
                                     <p>
                                         <ul>
-                                            <li class="Text-Style">Host A ip adresi -> 192.168.1.2 , gateway adresi(R1 gig0/0) -> 192.168.1.1</li>
-                                            <li class="Text-Style">Host B ip adresi -> 192.168.2.2 , gateway adresi(R2 gig0/0)  -> 192.168.2.1</li>
-                                            <li class="Text-Style">R1(gig0/1) ip addresi -> 192.168.100.1 , R2(gig0/1) ip adresi -> 192.168.100.2 </li>
+                                            <li class="Text-Style">Host A ip adresi -> 192.168.2.2 , FastEthernet 0/2 switch portuna bağlı </li>
+                                            <li class="Text-Style">Host B ip adresi -> 192.168.2.3 , FastEthernet 0/3 switch portuna bağlı </li>
+                                            <li class="Text-Style">Host C ip adresi -> 192.168.2.4 , FastEthernet 0/12 switch portuna bağlı </li>
+                                            <li class="Text-Style">Host D ip adresi -> 192.168.2.5 , FastEthernet 0/13 switch portuna bağlı </li>
                                         </ul>
                                     </p>
 
+                                     <div class="post-image margin-top-40 margin-bottom-40">
+                                      <img src="../images/Blog%20Picture/Network/2-vlan.2.png" alt="">
+                                    </div>
+
 
                                     <p>
-                                        Yukarıdaki Static Routing komutunu fotoğraftaki router'lar üzerinde yazmaya çalışsaydık şöyle bir sonuç elde ederdik
+                                        Yukarıdaki fotoğraf'ta ise switch port'larının hangi vlan'ara ait olduğunu göstermek istedim.
                                     </p>
-                                    <h3>Örnek Static Routing Yapılandırması</h3>
 
+                                    <h3>Örnek Vlan Yapılandırması</h3>
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                            #R1 için Static Routing
-                                            ip route 192.168.2.0  255.255.255.0 192.168.100.2
+                                            #I.adım
+                                            vlan 100
+                                            name Okul
 
-                                            #R2 için Static Routing
-                                            ip route 192.168.1.0  255.255.255.0 192.168.100.1
-
+                                            #II.adım
+                                            interface range FastEthernet 0/1-5
+                                            switchport access vlan 100
                                         </pre>
                                     </div>
 
                                     <p>
-                                        Yukardaki kuralın benim için anlamı şudur.Eğer R1'e 192.168.2.0/24 blok'lu ip'ye sahip bir data
-                                        geldiğinde bunu gig0/1'in bulunduğu bacağın karşına bakan 192.168.100.2 ip adresi'li bacağa gönder.
+                                        Yukarıda Okul adlı ve id'si 100 olan bir vlan oluşturuldu.Daha sonra ise herbir port'u tek tek girip vlan'a
+                                        atamaktan'sa range komutu ile sanki 5 adet interface aynı anda girip hepsini vlan 100'e atadık.Bu işlemden
+                                        sonra vlan oluşturulmuştur.
 
                                     </p>
 
