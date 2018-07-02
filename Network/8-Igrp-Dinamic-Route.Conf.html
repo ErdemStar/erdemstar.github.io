@@ -102,136 +102,136 @@
 
                                 <!-- Post Headline Start -->
                                 <div class="post-title">
-                                    <h1>Packet Tracer ile RIPv2 Yapılandırması</h1>
+                                    <h1>Packet Tracer ile IGRP Yapılandırması</h1>
                                    </div>
                                    <!-- Post Headline End -->
 
 
                                 <!-- Post Detail Start -->
                                 <div class="post-info">
-                                    <span>Haziran 26, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
+                                    <span>Haziran 29, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
                                 </div>
                                 <!-- Post Detail End -->
                                 <!-- İçerik -->
                                 <div class="yazı-kısmı">
                                     <p>
-                                        Merhaba arkadaşlar bugün sizlere RIPv2 hakkında açıklama yapıp daha sonra Packet Tracer üzerinde bir uygulama
+                                        Merhaba arkadaşlar bugün sizlere IGRP hakkında açıklama yapıp daha sonra Packet Tracer üzerinde bir uygulama
                                         ile kullanımını göstereceğim.<span style="font-weight: bold">Haydi bir giriş yapalım...</span>
                                     </p>
 
-                                    <h3>RIPv2</h3>
+                                    <h3>IGRP</h3>
                                     <p>
                                         <span>
-                                            (Router Information Protocol - Yönlendirme Bilgisi Protokolü) ,RIPv1'in biraz daha geliştirilmiş halidir.
-                                            RIPv1 routing table update paylaşımlarında sadece network address bilgisini gönderirken , RIPv2 bunun yanında
-                                            subnet mask ve hop sayısı bilgisini'de içinde bulundurarak gönderir.Eğer RIPv2 subnet mask bilgsinide gönderiyorsa
-                                            bu RIPv2'nın VLSM ve CIDR değerini desteklediğini anlamına gelir.Bunun dışında çoğu özelliği RIPv1 ile aynıdır.
-                                            RIpv2'de uzaklık vektör (distance-vector) protokolüdür.Uzaklık bilgisi olarka hop sayısını baz alır ve en çok uzaklık
-                                            15 olabilir.Hatırlanması gereken bir diğer nokta ise RIPv1 routing table update bilgisini diğer router'la paylaşırken
-                                            version 1 olarak paylaşır fakat diğer router'lar version 1 ve version 2 olarak 2 tane cevap dönerler.RIPv1 bu durumda
-                                            version 2 cevaplarını dikkate almaz fakat RIPv2 routint table update bilgisini diğer router'la paylaştığında diğer router'lar
-                                            sadece version 2 cevapları geri dönerler.
+                                            (Interior Gateway Routing Protocol - Dahili Ağ Geçidi Yönlendirme Protokolü) ,RIP benzer bir şekilde uzaklık vektör
+                                            (distance-vector) yöntemi ile çalışır.RIP'ın 15 hop üstü probleminin üstesinden gelmesi için Cisco tarafından üretilmiş
+                                            bir protokoldür.Bir hedefe en kısa yoldan giderken Bellman-ford algoritması kullanılır.IGRP bir Cisco ürünü olduğu için
+                                            Cisco sadece cıhazlarda çalışır.Administrative distance değeri 100'dür.Varsayılan olarak hop sayısı 100 ama 255'e kadar
+                                            destekleniyor.Routing table güncellemelerini her 90 saniye bir gönderir.IGRP classfull ip adreslerini destekler bu yüzden
+                                            routing table güncellemelerinde subnet mask'lar dahil edilmez.IGRP uzaklık vektörü (distance vector) hesaplamalarında
+                                            varsayılan olarak hat genişliği (Bandwidth) ve hat beklemesi (Delay of Time)'ı baz alır.İsteğe bağlı olarak Reliability
+                                            , Load ve MTU değerleri kullanılabilir.IGRP AS (Autonomous System) numarası kullanılır.Aynı AS değerini sahip IGRP'ler
+                                            birbirleriyle haberleşirler.
                                         </span>
 
                                     </p>
 
-                                    <h3>RIPv2'nın RIPv1'den farkı</h3>
+                                    <h3>IGRP Zamanlayıcıları</h3>
+
                                     <p>
-
                                         <ul>
-                                            <li class="Text-Style">Routing table update paylaşımlarında VLSM , CIDR ve bir sonraki hop bilgisi dahil edilmiştir</li>
-                                            <li class="Text-Style">Routing table update'lerde multicast address kullanlır</li>
-                                            <li class="Text-Style">RIPv2 md5 şifrelemeyi destekler.</li>
-                                        </ul>
 
-                                    </p>
+                                            <li class="Text-Style">
+                                                <b>Update Timer</b>:
+                                                varsayılan olarak 90 saniyedir.Bu zaman router'ların routing table güncellemelerini paylaşım süresidir.
+                                            </li>
 
-                                     <h3>RIPv2'nın RIPv1'den benzerlikleri</h3>
-                                    <p>
+                                            <li class="Text-Style">
+                                                <b>Invalid Timer</b>:
+                                                varsayılan olarak 270 saniyedir.Bir router'ın,bir yolu geçersiz olarak işaretlemeden önce bir
+                                                güncellemeyi duymak için beklediği zamandır.Zamanlayıcının süresi dolmadan bir güncelleme alınırsa, zamanlayıcı
+                                                sıfırlanır.Bu süre zarfında bir güncelleme mesajı alınmassa güncelleme mesajı alınmayan yolun metriği 101 yapılır.
+                                                Bunun anlamı ise bu yola ulaşılamıyordur.
+                                            </li>
 
-                                        <ul>
-                                            <li class="Text-Style">Routing döngülerini engellemek için Hold Down Timers kullanır</li>
-                                            <li class="Text-Style">Routing döngülerini engellemek için Route Poisoning ve Split Horizon kullanır.</li>
-                                            <li class="Text-Style">Topolojideki herhangi bir değişiklik meydana geldiğinde onu hızlı bir şekilde paylaşır</li>
-                                            <li class="Text-Style">Bir network en fazla 15 hop kadar uzak olabilir.Bundan daha fazlası için ulaşılamaz network olur.</li>
+                                            <li class="Text-Style">
+                                                <b>Flush Timer</b>:
+                                                varsayılan olarak 630 saniyedir.Geçersiz bir yolun routing table'dan kaldırılmadan önceki zamanıdır.Bir router
+                                                bir yolu geçersiz(invalid) olarak işaretledikten sonra 360 saniye bekler ve yolu routint table'den tamamen siler.
+                                            </li>
+
+                                            <li class="Text-Style">
+                                                <b>Hold down timer:</b>:
+                                                varsayılan olarak 280 saniyedir.Çok kullanılmayan yollar hakkında bilgilerin göz ardı edildiği kısımdır.
+                                            </li>
+
                                         </ul>
 
                                     </p>
 
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                            #RIPv2 Dinamic Routing
+                                            #IGRP Dinamic Routing
 
                                             #I.adım
-                                            router rip
+                                            router igrp AS Numarası
 
-                                            #II.adım
-                                            version 2
-
-                                            #III.adım (Router'ın önündeki ve arkasında network bloklarını adedi kadar yazın)
+                                            #II.adım (Router'ın önündeki ve arkasında network bloklarını adedi kadar yazın)
                                             network ip-blok
 
                                         </pre>
                                     </div>
 
                                     <div class="post-image margin-top-40 margin-bottom-40">
-                                      <img src="../images/Blog%20Picture/Network/7-RIPv2.1.png" alt="">
+                                      <img src="../images/Blog%20Picture/Network/8-IGRP.1.png" alt="">
                                     </div>
 
 
                                     <p>
-                                        Yukarıdaki fotoğraf'ta 3 adet router ve onlara bağlı 3 adet switch ve bu cihazlara bağlı 1'er adet host görüyoruz.
-                                        Her switch'deki host'ların ip blokları birbirinden farklıdır.Biz bunların haberleşmesi için Dinamic Routing protokollerinden
-                                        olan RIPv2'yi kullancağız.
+                                        Yukarıdaki fotoğraf'ta 3 adet router ve R1 ve R3'e bağlı 1'er adet host görüyoruz.Biz bu host'ların haberleşmesi için
+                                        Dinamic Routing protokollerinden olan IGRP'yi kullancağız.
                                     </p>
 
                                     <p>
                                         <ul>
-                                            <li class="Text-Style">Host X ip adresi -> 192.168.50.2 , gateway adresi(A gig0/0) -> 192.168.50.1</li>
-                                            <li class="Text-Style">A(gig0/0)  ip addresi -> 192.168.50.1 (Gateway)</li>
-                                            <li class="Text-Style">A(se0/0/0) ip addresi -> 172.16.10.1 </li>
-                                            <li class="Text-Style">A(se0/0/1) ip addresi -> 172.17.20.1 </li>
+                                            <li class="Text-Style">Host1 ip adresi -> 192.168.1.2 , gateway adresi(R1 gig0/0) -> 192.168.1.1</li>
+                                            <li class="Text-Style">R1(gig0/0)  ip addresi -> 192.168.50.1 (Gateway)</li>
+                                            <li class="Text-Style">R1(gig0/1)  ip addresi -> 10.10.0.2</li>
 
-                                            <li class="Text-Style">Host Y ip adresi -> 192.168.100.2 , gateway adresi(C gig0/0)  -> 192.168.100.1</li>
-                                            <li class="Text-Style">C(gig0/0)  ip addresi -> 192.168.100.1 (Gateway)</li>
-                                            <li class="Text-Style">C(se0/0/0) ip addresi -> 172.17.20.2 </li>
-                                            <li class="Text-Style">C(se0/0/1) ip addresi -> 172.18.30.2 </li>
+                                            <li class="Text-Style">Host2 ip adresi -> 192.168.2.2 , gateway adresi(R2 gig0/0) -> 192.168.2.1</li>
+                                            <li class="Text-Style">R2(gig0/0)  ip addresi -> 192.168.2.1 (Gateway)</li>
+                                            <li class="Text-Style">R2(gig0/1)  ip addresi -> 10.130.0.2</li>
 
-                                            <li class="Text-Style">Host Z ip adresi -> 192.168.150.2 , gateway adresi(B gig0/0)  -> 192.168.150.1</li>
-                                            <li class="Text-Style">B(gig0/0)  ip addresi -> 192.168.150.1 (Gateway)</li>
-                                            <li class="Text-Style">B(se0/0/0) ip addresi -> 172.18.30.1 </li>
-                                            <li class="Text-Style">B(se0/0/1) ip addresi -> 172.17.20.2 </li>
+                                            <li class="Text-Style">R3(gig0/0)  ip addresi -> 10.10.0.1</li>
+                                            <li class="Text-Style">R3(gig0/1)  ip addresi -> 10.130.0.1</li>
+
 
 
                                         </ul>
                                     </p>
 
-                                    <div class="post-image margin-top-40 margin-bottom-40">
-                                      <img src="../images/Blog%20Picture/Network/7-RIPv2.2.png" alt="">
+
+                                     <div class="post-quote margin-top-40 margin-bottom-40">
+                                        <blockquote>
+                                            Packettracer üzerinde igrp prokolü desteği yok :(
+                                        </blockquote>
                                     </div>
 
-                                    <p>
-                                       Yukarıda şekilde'ki router'ların routing table örneğini göstermek istedim.Başında "R" harfi olan'lar Rip'i temsil
-                                        etmektedir.Kurallara biraz daha bakarsak hangi ip bloğuna hangi bacak'tan erişebileceğimizi görebiliriz
-                                    </p>
                                     <h3>Örnek Ospf Dinamic Routing Yapılandırması</h3>
 
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                            #A için RIPv2
-                                            router rip
-                                            version 2
-                                            network 192.168.50.1
-                                            network 172.16.10.0
-                                            network 172.17.20.0
+                                            #R1 için IGRP
+                                            router igrp 100
+                                            network 192.168.1.0
+                                            network 10.10.0.0
 
 
                                         </pre>
                                     </div>
 
                                     <p>
-                                        Yukardaki kuralın benim için anlamı şudur.İlk başta rip'i tanımlayıp daha sonra ise version 2 olduğunu söyledik
-                                        Daha sonra R1'in 3 adet bacağı aktif olduğunu biliyoruz.Biz bu bacakları diğer router'lar görmesi için kullanıma açıyoruz.
+                                        Yukardaki kuralın benim için anlamı şudur.İlk başta igrp için bir AS tanımlanıyor.Bu AS değer IGRP çalışacak router'larla aynı
+                                        olmalıdır.Daha sonra R1'in 2 adet bacağı aktif olduğunu biliyoruz.Biz bu bacakları diğer router'lar görmesi için kullanıma açıyoruz.
 
                                     </p>
 
