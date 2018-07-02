@@ -102,136 +102,150 @@
 
                                 <!-- Post Headline Start -->
                                 <div class="post-title">
-                                    <h1>Packet Tracer ile RIPv2 Yapılandırması</h1>
+                                    <h1>Packet Tracer ile EIGRP Yapılandırması</h1>
                                    </div>
                                    <!-- Post Headline End -->
 
 
                                 <!-- Post Detail Start -->
                                 <div class="post-info">
-                                    <span>Haziran 26, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
+                                    <span>Temmuz 1, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
                                 </div>
                                 <!-- Post Detail End -->
                                 <!-- İçerik -->
                                 <div class="yazı-kısmı">
                                     <p>
-                                        Merhaba arkadaşlar bugün sizlere RIPv2 hakkında açıklama yapıp daha sonra Packet Tracer üzerinde bir uygulama
+                                        Merhaba arkadaşlar bugün sizlere EIGRP hakkında açıklama yapıp daha sonra Packet Tracer üzerinde bir uygulama
                                         ile kullanımını göstereceğim.<span style="font-weight: bold">Haydi bir giriş yapalım...</span>
                                     </p>
 
-                                    <h3>RIPv2</h3>
+                                    <h3>EIGRP</h3>
                                     <p>
                                         <span>
-                                            (Router Information Protocol - Yönlendirme Bilgisi Protokolü) ,RIPv1'in biraz daha geliştirilmiş halidir.
-                                            RIPv1 routing table update paylaşımlarında sadece network address bilgisini gönderirken , RIPv2 bunun yanında
-                                            subnet mask ve hop sayısı bilgisini'de içinde bulundurarak gönderir.Eğer RIPv2 subnet mask bilgsinide gönderiyorsa
-                                            bu RIPv2'nın VLSM ve CIDR değerini desteklediğini anlamına gelir.Bunun dışında çoğu özelliği RIPv1 ile aynıdır.
-                                            RIpv2'de uzaklık vektör (distance-vector) protokolüdür.Uzaklık bilgisi olarka hop sayısını baz alır ve en çok uzaklık
-                                            15 olabilir.Hatırlanması gereken bir diğer nokta ise RIPv1 routing table update bilgisini diğer router'la paylaşırken
-                                            version 1 olarak paylaşır fakat diğer router'lar version 1 ve version 2 olarak 2 tane cevap dönerler.RIPv1 bu durumda
-                                            version 2 cevaplarını dikkate almaz fakat RIPv2 routint table update bilgisini diğer router'la paylaştığında diğer router'lar
-                                            sadece version 2 cevapları geri dönerler.
+                                            (Enhanced Interior Gateway Routing Protocol-Gelişmiş İç Ağ Geçidi Yönlendirme Protokolü) ,Cisco tarafından üretilen
+                                            EIGRP 2013 yılına kadar sadece cisco cihazlar üzerinde kullanılabiliyordu.2013 mart ayıdan sonra artık diğer cihazlar tarafından'da
+                                            kullanılabilir hale geldi.EIGRP'i classless routing protokoldür yani routing table güncelleme data'larının içersinde subnet mask
+                                            bilgileri'de dahil ederek gönderir.Buradan anlaşıyorki EIGRP VLSM ve CIDR'ı destekler.IGRP tabanlı olup daha gelişmiş halidir.
+                                            Distance vector ve Link state özelliğine sahip olduğu için Hybrid Routing protokoldür.En iyi yolu bulmak için DUAL(Diffusing Update Algorithm)
+                                            algoritmasını kullanır.Sadece aynı AS(Autonomous System) numarasına sahip router'lar komşu olabilirler.
                                         </span>
-
                                     </p>
-
-                                    <h3>RIPv2'nın RIPv1'den farkı</h3>
                                     <p>
-
-                                        <ul>
-                                            <li class="Text-Style">Routing table update paylaşımlarında VLSM , CIDR ve bir sonraki hop bilgisi dahil edilmiştir</li>
-                                            <li class="Text-Style">Routing table update'lerde multicast address kullanlır</li>
-                                            <li class="Text-Style">RIPv2 md5 şifrelemeyi destekler.</li>
-                                        </ul>
-
+                                        <span style="margin-left: 20px">
+                                            Komşularıyla haberleşirken RTP(Reliable Transport Protocol) protokolü kullanır.Routing table güncellemeleri
+                                            için multicast kullanır.EIGRP IP (hem IPv4 hemde IPV6), Apple Talk ve IPX gibi protokolleri destekler.Tek bir hedef için 6 yol boyunca
+                                            load balancing yapabilir.EIGRP yanlızca ağda bir değişiklik olduğunda kısmi yada tam routing table güncellemeleri gönderir.EIGRP üzerinde
+                                            çalışan router'larda MD5'i destekler.İç ağlari için AD (Administrative Distance) değeri 90 iken dış ağlar için 170 dir.Maksimum hop sayısı
+                                            224 iken varsayılan olarak 100 dür.
+                                        </span>
                                     </p>
+                                    <p>EIGRP daha iyi performans için 3 adet tablo kullanır.</p>
 
-                                     <h3>RIPv2'nın RIPv1'den benzerlikleri</h3>
-                                    <p>
+                                    <ul>
+                                        <li class="Text-Style">
+                                                <b>Neighbor Table</b>:
+                                                 EIGRP routing table bilgilerini sadece komşular'la paylaşır.Hangi router'ların EIGRP komşusu olup olmadığını bu tabloda tuttuğu
+                                                 kayıtlarla anlar.EIGRP tarafından belirlenen yeni bir komşu adresi ve network bilgileri bu tabloya eklenir.EIGRP yönlendirilen
+                                                 her bir protokol için farklı bir tablo kullanır.
+                                        </li>
 
-                                        <ul>
-                                            <li class="Text-Style">Routing döngülerini engellemek için Hold Down Timers kullanır</li>
-                                            <li class="Text-Style">Routing döngülerini engellemek için Route Poisoning ve Split Horizon kullanır.</li>
-                                            <li class="Text-Style">Topolojideki herhangi bir değişiklik meydana geldiğinde onu hızlı bir şekilde paylaşır</li>
-                                            <li class="Text-Style">Bir network en fazla 15 hop kadar uzak olabilir.Bundan daha fazlası için ulaşılamaz network olur.</li>
-                                        </ul>
+                                        <li class="Text-Style">
+                                                <b>Topology Table</b>:
+                                                EIGRP, komşulardan öğrendiği tüm rotaları saklamak için bu tabloyu kullanır. Komşu yönlendiriciler tarafından
+                                                bildirilen tüm hedeflerin ve rotaların bir listesini içerir. EIGRP, bu listeden her hedef için en iyi rotayı
+                                                seçer. Bu rota routing table'la gider. Kalan rotalar yedek rota olarak işaretlenir. EIGRP, seçili rotayı
+                                                Başarılı (Successor) ve Yedekleme Yolu olarak Mümkün Başarılı (Feasible Successor)olarak ifade eder. EIGRP, yönlendirilen
+                                                her protokol(Ipv4 , Ipv6 vs.) için ayrı topoloji tablosu kullanır..
+                                        </li>
 
-                                    </p>
+                                        <li class="Text-Style">
+                                                <b>Routing Table</b>:
+                                                EIGRP bu tablo içersinde her bir hedef için en iyi yolu tutar.Router'lar bu table'i packet'leri bir yerden başka bir yere
+                                                iletirken kullanırlar.Yönlendirlen her bir protokol(Ipv4 , Ipv6 vs.) için farklı bir tablo vardır.
+                                        </li>
+                                    </ul>
+
+
+                                    <p>EIGRP'nin kullandığı packet tipleri</p>
+
+                                    <ul>
+                                        <li class="Text-Style"><b>Hello</b>:Komşuları belirlemek için kullanır.Periyodik multicast olarak gönderilir.</li>
+                                        <li class="Text-Style"><b>Update</b>:Güncellemeleri duyurmak için kullanılır , bu mesaj sadece birşeyler değiştiğinde gönderilir </li>
+                                        <li class="Text-Style"><b>Ack</b>:Bir güncellemenin alındığını söyler.Aslında Ack içersinde data olmayan bir Hello packetidir
+                                            ve UDP kullanılarak unicast olarak gönderilir</li>
+                                        <li class="Text-Style"><b>Query</b>:Bir hedefe giden bütün yollar başarısız olduğu zaman alternatif bir yol bulmak için kullanılır.</li>
+                                        <li class="Text-Style"><b>Reply</b>:Bu packet'ler Query sorgusunun cevabıdır ve unicast olarak sorgulama yönlendiricisine güvenilir şekilde gönderilir.</li>
+
+
+                                    </ul>
 
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                            #RIPv2 Dinamic Routing
+                                            #EIGRP Dinamic Routing
 
                                             #I.adım
-                                            router rip
+                                            router eigrp AS Numarası
 
-                                            #II.adım
-                                            version 2
-
-                                            #III.adım (Router'ın önündeki ve arkasında network bloklarını adedi kadar yazın)
+                                            #II.adım (Router'ın önündeki ve arkasında network bloklarını adedi kadar yazın)
                                             network ip-blok
 
                                         </pre>
                                     </div>
 
                                     <div class="post-image margin-top-40 margin-bottom-40">
-                                      <img src="../images/Blog%20Picture/Network/7-RIPv2.1.png" alt="">
+                                      <img src="../images/Blog%20Picture/Network/9-EIGRP.1.png" alt="">
                                     </div>
 
 
                                     <p>
-                                        Yukarıdaki fotoğraf'ta 3 adet router ve onlara bağlı 3 adet switch ve bu cihazlara bağlı 1'er adet host görüyoruz.
-                                        Her switch'deki host'ların ip blokları birbirinden farklıdır.Biz bunların haberleşmesi için Dinamic Routing protokollerinden
-                                        olan RIPv2'yi kullancağız.
+                                        Yukarıdaki fotoğraf'ta 3 adet router 2 adet switch ve bunları bağlı 2'er adet host görüyoruz.Biz bu host'ların haberleşmesi için
+                                        Dinamic Routing protokollerinden olan EIGRP'yi kullancağız.
                                     </p>
 
-                                    <p>
-                                        <ul>
-                                            <li class="Text-Style">Host X ip adresi -> 192.168.50.2 , gateway adresi(A gig0/0) -> 192.168.50.1</li>
-                                            <li class="Text-Style">A(gig0/0)  ip addresi -> 192.168.50.1 (Gateway)</li>
-                                            <li class="Text-Style">A(se0/0/0) ip addresi -> 172.16.10.1 </li>
-                                            <li class="Text-Style">A(se0/0/1) ip addresi -> 172.17.20.1 </li>
 
-                                            <li class="Text-Style">Host Y ip adresi -> 192.168.100.2 , gateway adresi(C gig0/0)  -> 192.168.100.1</li>
-                                            <li class="Text-Style">C(gig0/0)  ip addresi -> 192.168.100.1 (Gateway)</li>
-                                            <li class="Text-Style">C(se0/0/0) ip addresi -> 172.17.20.2 </li>
-                                            <li class="Text-Style">C(se0/0/1) ip addresi -> 172.18.30.2 </li>
+                                    <ul>
+                                        <li class="Text-Style">H1 ip adresi -> 192.168.100.2 , gateway adresi(R1 gig0/0) -> 192.168.100.1</li>
+                                        <li class="Text-Style">H2 ip adresi -> 192.168.100.3 , gateway adresi(R1 gig0/0) -> 192.168.100.1</li>
+                                        <li class="Text-Style">Router1(gig0/0)  ip addresi -> 192.168.100.1 (Gateway)</li>
+                                        <li class="Text-Style">Router1(gig0/1)  ip addresi -> 10.10.0.2</li>
 
-                                            <li class="Text-Style">Host Z ip adresi -> 192.168.150.2 , gateway adresi(B gig0/0)  -> 192.168.150.1</li>
-                                            <li class="Text-Style">B(gig0/0)  ip addresi -> 192.168.150.1 (Gateway)</li>
-                                            <li class="Text-Style">B(se0/0/0) ip addresi -> 172.18.30.1 </li>
-                                            <li class="Text-Style">B(se0/0/1) ip addresi -> 172.17.20.2 </li>
+                                        <li class="Text-Style">Router2(gig0/0)  ip addresi -> 20.0.0.1</li>
+                                        <li class="Text-Style">Router2(gig0/1)  ip addresi -> 10.0.0.1</li>
 
+                                        <li class="Text-Style">H3 ip adresi -> 192.168.200.2 , gateway adresi(R2 gig0/1) -> 192.168.200.1</li>
+                                        <li class="Text-Style">H4 ip adresi -> 192.168.200.3 , gateway adresi(R2 gig0/1) -> 192.168.200.1</li>
+                                        <li class="Text-Style">Router3(gig0/1)  ip addresi -> 192.168.200.1(Gateway)</li>
+                                        <li class="Text-Style">Router3(gig0/0)  ip addresi -> 20.0.0.2 </li>
+                                    </ul>
 
-                                        </ul>
-                                    </p>
 
                                     <div class="post-image margin-top-40 margin-bottom-40">
-                                      <img src="../images/Blog%20Picture/Network/7-RIPv2.2.png" alt="">
+                                      <img src="../images/Blog%20Picture/Network/9-EIGRP.2.png" alt="">
                                     </div>
 
+
                                     <p>
-                                       Yukarıda şekilde'ki router'ların routing table örneğini göstermek istedim.Başında "R" harfi olan'lar Rip'i temsil
-                                        etmektedir.Kurallara biraz daha bakarsak hangi ip bloğuna hangi bacak'tan erişebileceğimizi görebiliriz
+                                       Yukarıda şekilde'ki router'ların routing table örneğini göstermek istedim.Başında "D" harfi olan'lar EIGRP'i temsil
+                                        etmektedir.Kurallara biraz daha bakarsak hangi ip bloğuna hangi sbacak'tan erişebileceğimizi görebiliriz
                                     </p>
-                                    <h3>Örnek RIPv2 Dinamic Routing Yapılandırması</h3>
+
+
+                                    <h3>Örnek EIGRP Dinamic Routing Yapılandırması</h3>
 
                                     <div class="margin-top-40 margin-bottom-40">
                                         <pre class="brush: js">
-                                            #A için RIPv2
-                                            router rip
-                                            version 2
-                                            network 192.168.50.1
-                                            network 172.16.10.0
-                                            network 172.17.20.0
+                                            #Router1 için EIGRP
+                                            router eigrp 100
+                                            network 192.168.100.0
+                                            network 10.10.0.0
 
 
                                         </pre>
                                     </div>
 
                                     <p>
-                                        Yukardaki kuralın benim için anlamı şudur.İlk başta rip'i tanımlayıp daha sonra ise version 2 olduğunu söyledik
-                                        Daha sonra R1'in 3 adet bacağı aktif olduğunu biliyoruz.Biz bu bacakları diğer router'lar görmesi için kullanıma açıyoruz.
+                                        Yukardaki kuralın benim için anlamı şudur.İlk başta igrp için bir AS tanımlanıyor.Bu AS değer EIGRP çalışacak router'larla aynı
+                                        olmalıdır.Daha sonra Router1'in 2 adet bacağı aktif olduğunu biliyoruz.Biz bu bacakları diğer router'lar görmesi için kullanıma açıyoruz.
 
                                     </p>
 
