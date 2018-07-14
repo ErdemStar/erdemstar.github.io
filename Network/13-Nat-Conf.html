@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- Meta Tag -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO -->
+    <meta name="description" content="150 words">
+    <meta name="author" content="uipasta">
+    <meta name="url" content="http://www.yourdomainname.com">
+    <meta name="copyright" content="company name">
+    <meta name="robots" content="index,follow">
+    
+    
+    <title>Yazılım & Güvenlik</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
+    
+    <!-- All CSS Plugins -->
+    <link rel="stylesheet" type="text/css" href="../css/plugin.css">
+    
+    <!-- Main CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+    <!-- Google Web Fonts  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+    
+    <!-- Syntax Highlighter  -->
+    <link rel="stylesheet" type="text/css" href="../css/syntax/shCore.css">
+    <link rel="stylesheet" type="text/css" href="../css/syntax/shThemeDefault.css">
+    
+    
+    <!-- HTML5 shiv and Respond.js support IE8 or Older for HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+
+  </head>
+<body>
+	 <!-- Preloader Start -->
+     <div class="preloader">
+	   <div class="rounder"></div>
+      </div>
+     <!-- Preloader End -->
+    <div id="main">
+        <div class="container">
+            <div class="row">
+            	
+                <!-- About Me (Left Sidebar) Start -->
+                <div class="col-md-3 left-bar">
+                   <div class="about-absolute">
+
+                     <div class="my-pic">
+                        <img style="height: 400px;" src="../images/pic/IMG_3830.JPG" alt="">
+                        <a href="javascript:void(0)" class="collapsed" data-target="#menu" data-toggle="collapse"><i class="icon-menu menu"></i></a>
+                         <div id="menu" class="collapse">
+                           <ul class="menu-link">
+                               <li><a href="../index.html"><h4 class="yazı-boyutu">Ana Sayfa</h4></a></li>
+                               <li><a href="../about.html"><h4 class="yazı-boyutu">Hakkımda</h4></a></li>
+                            </ul>
+                         </div>
+                        </div>
+                     <div class="my-detail">
+
+                        <div class="white-spacing">
+                            <h1>Erdem YILDIZ</h1>
+                            <h5>Siber Güvenlik Araştırmacısı</h5>
+                            <h5>Python Geliştiricisi</h5>
+                            <h5>Linux Hayranı</h5>
+                        </div>
+
+                       <ul class="social-icon">
+                         <li><a href="https://www.facebook.com/profile.php?id=100001860038071" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                         <li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA/featured?disable_polymer=1" target="_blank" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                         <li><a href="https://www.linkedin.com/in/erdemyildiz/" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                         <li><a href="https://github.com/ErdemStar" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
+                        </ul>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- About Me (Left Sidebar) End -->
+
+                <!-- Blog Post (Right Sidebar) Start -->
+                <div class="col-md-9">
+                    <!-- col-md-12 body -->
+                    <div class="col-md-12 page-body">
+                    	<div class="row">
+                            
+                            <div class="sub-title">
+                                <a href="../index.html" title="Go to Home Page"><i class="fa fa-arrow-circle-left"></i><h2>Ana Sayfa'ya geri dön</h2></a>
+                             </div>
+                            
+                            <div class="col-md-12 content-page">
+                                <div class="col-md-12 blog-post">
+
+                                    <!-- Post Headline Start -->
+                                    <div class="post-title">
+                                        <h1>Packet Tracer ile NAT yapılandırması</h1>
+                                       </div>
+                                    <!-- Post Headline End -->
+
+                                    <!-- Post Detail Start -->
+                                    <div class="post-info">
+                                        <span>Temmuz 14, 2018 / by <a href="#" target="_blank">Erdem Yıldız</a></span>
+                                    </div>
+                                    <!-- Post Detail End -->
+
+                                    <!-- İçerik -->
+                                    <div class="yazı-kısmı">
+                                        <p>
+                                            Merhaba arkadaşlar bugün sizlere NAT hakkında açıklama yapıp daha sonra Packet Tracer üzerinde bir uygulama
+                                            ile kullanımını göstereceğim.<span style="font-weight: bold">Haydi bir giriş yapalım...</span>
+                                        </p>
+
+                                        <p>
+                                            <span style="margin-left: 20px" class="Text-Style">
+                                                İnternet'de dolaşmak isteyen her bir host dünya üzerinde eşsiz bir ip adresine ihtiyacı vardır.Ancak yıllar önce çoğu ip adresi tükendi.
+                                                Bu soruna çözüm olarak NAT (Network Address Translation - Ağ Adresi Çevirisi) ortaya çıktı.Dünya üzerinde bu yapı kullanılarak global ip
+                                                sayısı korunmuş oldu.
+                                            </span>
+
+                                        </p>
+
+                                        <p>
+                                            Eğer NAT'ı tek cümle ile özetlemek gerekirse <b>"NAT internet üzerinde geçerli ip adresi olmayan bir host'a başka bir host ile iletişim kurmasına
+                                            izin verir." </b> şeklinde olurdu.
+                                        </p>
+
+                                        <p>
+                                            Örnek vermek gerekirse local ağda 192.168.1.11 private ip adresi atanmış bir bilgisayar kullandığı bu private adresi internet üzerine yönlendirilmese bile
+                                            internete erişmektedir.Bunun sebebi router / modem'in bu ip adresini kendi üzerinde atanmış internet üzerinde geçerli bir public ip adresi ile değiştirmesi'dir.
+                                        </p>
+
+
+                                        <div class="post-image margin-top-40 margin-bottom-40">
+                                          <img src="../images/Blog%20Picture/Network/13-Nat.1.png" style="width: 70%; margin-left: 26%"  alt="">
+                                        </div>
+
+
+                                        <p>
+                                            Bu kadar bilgilendirmeden sonra bir kaç uç örnek verip NAT'ı biraz daha yaymak istiyorum.Bir şirketinizin içerisinde 240 tane'de çalışanınızın olduğunu
+                                            ayrıca şirketiniz internete girmek için bir ISP'den 60 adet public ip adresi aldığını düşünün.Şirketiniz'deki 240 kişi aynı anda internete girmek isterse
+                                            bunların sadece 60 tanesi bu isteğini yerine getirecektir.Diğer kalan 180 kişi hiçbir şekilde internete ulaşamayacaktır.Bu durumda NAT kullanarak birden fazla
+                                            host bir public ip adresi kullanarak internete erişebilmektedir.
+
+                                        </p>
+
+                                        <p>
+                                            <span style="margin-left: 20px">
+                                                Yukarıdaki senaryo her ne kadar mantıken doğru olsa bile günümüzde ISP'lerin 60 adet global ip vermesi herzaman mümkün olmayabiliyor.Bunun için'de kullanıcıların
+                                                ip ve port bilgisini kullanarak bir global ip üzerinden çıkmaları sağlanıyor.
+                                            </span>
+                                        </p>
+
+                                        <p>
+                                            NAT'ın kullandığı terimler.
+                                            <ul>
+                                                <li class="Text-Style">
+                                                    <b>Inside Local IP Address</b>:
+                                                    Kaynak(source) ip adresin NAT işleminden önceki local network'e bulunmuş halidir.
+
+                                                </li>
+
+                                                 <li class="Text-Style">
+                                                    <b>Inside Global IP Address</b>:
+                                                     Kaynak(source) ip adresin NAT işleminden sonra local network dışında bulunmuş halidir.
+
+
+                                                </li>
+
+                                                <li class="Text-Style">
+                                                    <b>Outside Local IP Address</b>:
+                                                    Hedef(destination) ip adresinin NAT işleminden sonra uzak network içersinde bulunmuş halidir.
+
+
+                                                </li>
+
+                                                <li class="Text-Style">
+                                                    <b>Outside Global IP Address</b>:
+                                                    Hedef(destination) ip adresinin NAT işleminden önce uzak network dışarında bulunmuş halidir.
+
+
+                                                </li>
+                                            </ul>
+                                        </p>
+
+                                        <div class="post-image margin-top-40 margin-bottom-40">
+                                          <img src="../images/Blog%20Picture/Network/13-Nat.2.png" style=""  alt="">
+                                        </div>
+
+                                        <p>
+                                            <span style="margin-left: 20px" class="Text-Style">
+                                                Yukarıdaki fotoğrafı şöyle anlamaya çalışalım.Bizim bir kullanıcımız var ve bu kullanıcı internet üzerinden gazate okuyor.Kullanıcıyı internete bağlayan
+                                                ağ kullanıcı için local olarak adlandırılır.Aynı şekilde internete hizmet veren bu gazete kendisi için içinde bulunduğu ağ local olarak adlandırılır.Bu iki
+                                                local ağı birbirne bağlayan ağ ise global olarak adlandırlır.
+                                            </span>
+                                        </p>
+
+                                        <h3>NAT kendi içersinde 3'e ayrılır</h3>
+                                        <ul>
+
+                                            <li class="Text-Style">
+                                                <b>Static NAT</b>:
+                                                Bir local adresin sadece bir global adresi kullandığı NAT türüdür.Bu türde local ağda çalışan her host için global adres gereklidir.
+                                            </li>
+
+                                            <li class="Text-Style">
+                                                <b>Dinamic NAT</b>:
+                                                Local ağda birden fazla global ip adreslerin kullanıldğı NAT Pool(havuz) oluşturulur.İnternet'e bağlanmak isteyen host'lar bu NAT havuzundan global ip adresi
+                                                isteyerek internete çıkarlar.Bu işlen NAT havuzunun elindeki global adresler kadar yapılır.Eğer NAT havuzunda kullanılacak bir global adres yoksa internete çıkmak
+                                                isteyen diğer host'ların packetleri drop edilerek interente ulaşamazlar.(Her host bir global adres kullanır.)
+                                            </li>
+
+                                            <li class="Text-Style">
+                                                <b>PAT (NAT Overloading)</b>:
+                                                Dinamic bir NAT türü olan bu yapıda farklı port kullanan çoklu local ip adreslerini bir global ip adresine bağlayan yapıdır.Static ve Dinamic NAT'da host'lar global
+                                                ip adres'leriyle tek tek eşleşirler.Demek istediğim internete çıkmak isteyen ne kadar host varsa o kadar global ip adres olmak zorunda fakat PAT kullanarak binlerce
+                                                host'u bir tane global ip adresine bağlayabiliriz.
+                                            </li>
+                                        </ul>
+
+                                        <p>
+                                            Yukarıdaki topoloji'yi baz alarak bir Static NAT yapılandırması yapacağız fakat bu işlemlerden önce eğer böyle bir topolojiniz NAT işlemlerinden önce kendi içersinde
+                                            haberleştiğinden emin olunuz.
+
+                                        </p>
+
+                                        <h3>Static NAT Yapılandırması</h3>
+                                        <div class="margin-top-40 margin-bottom-40">
+                                            <pre class="brush: js">
+                                                #Router0 üzerinden gerçekleştireceğiz
+
+                                                #I.adım  -> Router üzerindeki interface'leri konumuna göre inside yada outside yapmalıyız.
+                                                interface gigabitEthernet 0/0
+                                                ip nat outside
+                                                interface gigabitEthernet 0/1
+                                                ip nat inside
+
+                                                #II.adım -> Router üzerinde inside tarafında dışarı çıkan paketlerde inside bacağındaki ip adresini outside bacağındaki ip adresi yapma işlemidir.
+                                                ip nat inside source static 192.168.1.2 100.0.0.1
+
+                                            </pre>
+                                        </div>
+
+                                        <h3>Dinamic NAT Yapılandırması</h3>
+                                        <div class="margin-top-40 margin-bottom-40">
+                                            <pre class="brush: js">
+                                                #Router0 üzerinden gerçekleştireceğiz
+
+                                               #I.adım  -> Router üzerindeki interface'leri konumuna göre inside yada outside yapmalıyız.
+                                                interface gigabitEthernet 0/0
+                                                ip nat outside
+                                                interface gigabitEthernet 0/1
+                                                ip nat inside
+
+                                                #II.adım -> Router üzerinde inside tarafında dışarı çıkan paketlerde inside bacağındaki ip adresini outside bacağına vardığında NAT pool'da belirlenen bir aralıkta ip adresi alma işlemidir.
+                                                ip nat pool Try 100.0.0.50 100.0.0.60 netmask 255.0.0.0
+                                                ip nat inside source list 10 pool Try
+                                                access-list 10 permit 192.168.1.0  0.0.0.255
+
+                                            </pre>
+                                        </div>
+
+                                         <h3>PAT (NAT Overloading) Yapılandırması</h3>
+                                        <div class="margin-top-40 margin-bottom-40">
+                                            <pre class="brush: js">
+                                                #Router0 üzerinden gerçekleştireceğiz
+
+                                                #I.adım  -> Router üzerindeki interface'leri konumuna göre inside yada outside yapmalıyız.
+                                                interface gigabitEthernet 0/0
+                                                ip nat outside
+                                                interface gigabitEthernet 0/1
+                                                ip nat inside
+
+                                                #II.adım ->Router dışarıya bakan bacağının ip adresi kullanarak hedefe ulaşılacaktır.
+                                                ip nat inside source list 10 interface GigabitEthernet0/0 overload
+                                                access-list 10 permit 192.168.1.0 0.0.0.255
+                                            </pre>
+                                        </div>
+
+
+
+                                        <span style="margin-left: 20px" class="Text-Style">
+                                                  Yukarıda paylaşmış olduğum bilgilerde bir problem yada yapılabilecek iyileştirmeler için bana
+                                              ulaşabilirseniz çok sevinirim.Okuduğunuz için çok teşekkür ederim.Esen kalın :)
+                                        </span>
+                                    </div><!-- İçerik -->
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                              
+                    </div><!-- col-md-12 body -->
+                         
+
+                           
+                </div><!-- Blog Post (Right Sidebar) Start -->
+
+                     
+                     
+                       
+                       <!-- Footer Start -->
+                       <div class="col-md-12 page-body margin-top-50 footer">
+                          <footer>
+                          <ul class="menu-link">
+                               <li><a href="../index.html"><h4>Ana Sayfa</h4></a></li>
+                               <li><a href="../about.html"><h4>Hakkımda</h4></a></li>
+                            </ul>
+                          <div class="social-menu">
+                              <ul class="social-icon">
+                                 <li><a href="https://www.facebook.com/profile.php?id=100001860038071" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                 <li><a href="https://www.youtube.com/channel/UCu5NyREC0zwn76fnj7UlevA/featured?disable_polymer=1" target="_blank" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                                 <li><a href="https://www.linkedin.com/in/erdemyildiz/" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                 <li><a href="https://github.com/ErdemStar" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
+                             </ul>
+                          </div>
+                         </footer>
+                       </div>
+                       <!-- Footer End -->
+
+
+                  </div>
+                <!-- Blog Post (Right Sidebar) End -->
+                
+            </div><!-- row-->
+         </div> <!-- container-->
+      </div> <!-- main-->
+    
+
+    <!-- Back to Top Start -->
+    <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
+    <!-- Back to Top End -->
+
+    <!-- All Javascript Plugins  -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/plugin.js"></script>
+    
+    <!-- Main Javascript File  -->
+    <script type="text/javascript" src="../js/scripts.js"></script>
+    
+    <!-- Syntax Highlighter Javascript File  -->
+    <script type="text/javascript" src="../js/syntax/shCore.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushCss.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPerl.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPlain.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushPython.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushRuby.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushSql.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushVb.js"></script>
+    <script type="text/javascript" src="../js/syntax/shBrushXml.js"></script>
+    
+	<!-- Syntax Highlighter Call Function -->
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = 'js/syntax/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+
+    
+   </body>
+</html>
